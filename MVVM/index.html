@@ -13,13 +13,19 @@
         <li>{{message}}</li>
     </ul>
 </div>
+<script src="observer.js"></script>
 <script src="compile.js"></script>
 <script src="MVVM.js"></script>
 <script>
   const vm = new MVVM({
     el: "#app",
     data: {
-      message: '000'
+      message: 'hello world',
+      userInfo:{
+        name: 'tim',
+        age: 18,
+        toSay: '成为一位顶尖代码搬运师#Fire!!'
+      }
     }
   })
 </script>

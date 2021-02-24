@@ -1,8 +1,7 @@
 {
   "name": "nodejs",
   "version": "1.0.0",
-  "dependencies": {
-  },
+  "dependencies": {},
   "type": "module",
-  "main": "index.mjs"
+  "main": "index.js"
 }
