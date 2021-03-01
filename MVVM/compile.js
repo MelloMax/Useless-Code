@@ -65,6 +65,15 @@ class Compile {
     return text.split('.').reduce((prev, next) => prev[next], vm.$data)
   }
 
+  setVal(vm, text, value) {
+    return text.split('.').reduce((prev, next, currentIndex, arr) => {
+      if (currentIndex === arr.length - 1) {
+        return prev[next] = value
+      }
+      return prev[next]
+    }, vm.$data)
+  }
+
   //更新替换
   compileHandler(node, value, key) {
     const that = this;
@@ -74,12 +83,24 @@ class Compile {
         text = text.replace(/\{\{([^}]+)\}\}/g, (...arg) => {
           //获取每一个{{}}里面的值
           let val = arg[1];
+          // 当值变化后，文本节点要重新获取依赖属性更新文本
+          new Watcher(that.vm, val, newValue => {
+            updater[key](node, newValue)
+          })
           //对每一个值进行替换
           return that.getVal(that.vm, arg[1])
         })
         updater[key](node, text)
       },
       model(node, value) {
+        // 当值变化后，文本节点要重新获取依赖属性更新文本
+        new Watcher(that.vm, value, newValue => {
+          updater[key](node, that.getVal(that.vm, value))
+        })
+        node.addEventListener('input', e => {
+          const newValue = e.target.value;
+          that.setVal(that.vm, value, newValue);
+        });
         updater[key](node, that.getVal(that.vm, value))
       }
     }

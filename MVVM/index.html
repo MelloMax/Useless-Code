@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        input{
+            display: block;
+            width: 35%;
+        }
+    </style>
 </head>
 <body>
 <div id="app">
@@ -12,7 +18,17 @@
         <li>{{message}}</li>
         <li>{{message}}</li>
     </ul>
+    <br />
+    <input type="text" v-model="userInfo.name" placeholder="输入你的名字">
+    <input type="text" v-model="userInfo.age" placeholder="输入你的岁数">
+    <input type="text" v-model="userInfo.toSay" placeholder="请输入你的格言">
+    <ul>
+        <li>{{userInfo.name}}</li>
+        <li>{{userInfo.age}}</li>
+        <li>{{userInfo.toSay}}</li>
+    </ul>
 </div>
+<script src="watcher.js"></script>
 <script src="observer.js"></script>
 <script src="compile.js"></script>
 <script src="MVVM.js"></script>
@@ -22,8 +38,8 @@
     data: {
       message: 'hello world',
       userInfo:{
-        name: 'tim',
-        age: 18,
+        name: '6uo搬运师',
+        age: 'infinite',
         toSay: '成为一位顶尖代码搬运师#Fire!!'
       }
     }
