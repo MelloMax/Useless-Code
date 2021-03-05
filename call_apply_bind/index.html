@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  //helper
+  const getGlobal = () => this === this.window ? window : global;
+
+  //core
+  Function.prototype._call = function (content, ...args) {
+    content = content || getGlobal();
+    let fn = Symbol('fn');
+    content[fn] = this;
+    let result = content[fn](...args);
+    delete content[fn];
+    return result;
+  }
+
+  Function.prototype._apply = function (content, args) {
+    content = content || getGlobal();
+    let fn = Symbol('fn');
+    content[fn] = this;
+    let result = content[fn](...args);
+    delete content[fn];
+    return result;
+  }
+
+  //似乎给call/apply包一层function就实现了bind()
+  Function.prototype._bind = function (content, ...args) {
+    const self = this;
+    return function () {
+      content = content || getGlobal();
+      let fn = Symbol('fn');
+      content[fn] = self;
+      let result = content[fn](...args);
+      delete content[fn];
+      return result;
+    }
+  }
+
+
+  //测试
+  let name = 'on9搬运师'
+  const obj = {
+    name: '6uo搬运师'
+  };
+
+  function getName(text = 'helloWorld') {
+
+    return `${this.name}: ${text}`;
+  }
+
+  console.log(getName._call(obj))
+  console.log(Math.max._apply(null, [80, 1, 5, 6, 7]))
+  console.log(getName._bind(obj,'成为一位顶尖代码搬运师#Fire!!')())
+</script>
+</body>
+</html>
