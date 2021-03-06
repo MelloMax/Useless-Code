@@ -31,11 +31,11 @@
   //似乎给call/apply包一层function就实现了bind()
   Function.prototype._bind = function (content, ...args) {
     const self = this;
-    return function () {
+    return function (...newArgs) {
       content = content || getGlobal();
       let fn = Symbol('fn');
       content[fn] = self;
-      let result = content[fn](...args);
+      let result = content[fn](...args,...newArgs);
       delete content[fn];
       return result;
     }
