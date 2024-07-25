@@ -1,0 +1,27 @@
+{
+  "name": "coding",
+  "version": "1.0.0",
+  "description": "useless code",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MelloMax/Coding.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MelloMax/Coding/issues"
+  },
+  "homepage": "https://github.com/MelloMax/Coding#readme",
+  "devDependencies": {
+    "@babel/generator": "^7.24.7",
+    "@babel/parser": "^7.24.7",
+    "@babel/traverse": "^7.24.7",
+    "@babel/types": "^7.24.7",
+    "tapable": "^2.2.1"
+  }
+}
