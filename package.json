@@ -23,5 +23,8 @@
     "@babel/traverse": "^7.24.7",
     "@babel/types": "^7.24.7",
     "tapable": "^2.2.1"
+  },
+  "dependencies": {
+    "path-to-regexp": "^7.1.0"
   }
 }
